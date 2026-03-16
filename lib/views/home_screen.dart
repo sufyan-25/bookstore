@@ -1,0 +1,127 @@
+import 'package:flutter/material.dart';
+import 'package:bookstore/config/config.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return MainScreen();
+  }
+}
+
+class MainScreen extends StatelessWidget {
+  const MainScreen({super.key}); // Variables for colors
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          color: AppStyling.textHint,
+          onPressed: () {
+            Navigator.pushNamed(context, '/splash');
+          },
+          tooltip: 'Books',
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            color: AppStyling.textHint,
+            onPressed: () {
+              // Implement search functionality here
+            },
+          ),
+        ],
+        title: Text(
+          AppStrings.appName,
+          style: TextStyle(color: AppStyling.textHint),
+        ),
+        backgroundColor: AppStyling.background,
+        centerTitle: true,
+      ),
+      bottomNavigationBar: Container(
+        color: AppStyling.background,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
+          child: GNav(
+            haptic: false, // haptic feedback
+            tabBorderRadius: 15,
+            iconSize: 20, // tab button icon size
+            duration: Duration(milliseconds: 200), // tab animation duration
+            gap: 8,
+            color: AppStyling.textHint,
+            backgroundColor: AppStyling.background,
+            activeColor: AppStyling.textHint,
+            tabBackgroundColor: Color(0xFF656565).withAlpha(150),
+            padding: EdgeInsets.all(16),
+            tabs: const [
+              GButton(icon: Icons.home, text: 'Home'),
+              GButton(icon: Icons.settings, text: 'Settings'),
+              GButton(icon: Icons.search, text: 'Search'),
+              GButton(icon: Icons.verified_user_rounded, text: 'Profile'),
+            ],
+          ),
+        ),
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(10.0),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFFFF8B5A), Color(0xFFFF5a5a)], //
+          ),
+        ),
+        child: ListView(
+          children: [
+            const SizedBox(height: 16),
+            const HeroSection(),
+            const SizedBox(height: 16),
+            const HeroSection(),
+            const SizedBox(height: 16),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HeroSection extends StatelessWidget {
+  const HeroSection({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppStyling.background,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Hero Section',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            AppStrings.tagline,
+            style: TextStyle(color: Colors.white, fontSize: 10),
+          ),
+        ],
+      ),
+    );
+  }
+}
