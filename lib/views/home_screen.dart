@@ -47,30 +47,7 @@ class MainScreen extends StatelessWidget {
         backgroundColor: AppStyling.background,
         centerTitle: true,
       ),
-      bottomNavigationBar: Container(
-        color: AppStyling.background,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
-          child: GNav(
-            haptic: false, // haptic feedback
-            tabBorderRadius: 15,
-            iconSize: 20, // tab button icon size
-            duration: Duration(milliseconds: 200), // tab animation duration
-            gap: 8,
-            color: AppStyling.textHint,
-            backgroundColor: AppStyling.background,
-            activeColor: AppStyling.textHint,
-            tabBackgroundColor: Color(0xFF656565).withAlpha(150),
-            padding: EdgeInsets.all(16),
-            tabs: const [
-              GButton(icon: Icons.home, text: 'Home'),
-              GButton(icon: Icons.settings, text: 'Settings'),
-              GButton(icon: Icons.search, text: 'Search'),
-              GButton(icon: Icons.verified_user_rounded, text: 'Profile'),
-            ],
-          ),
-        ),
-      ),
+      bottomNavigationBar: BottomNav(),
       body: Container(
         padding: const EdgeInsets.all(10.0),
         decoration: BoxDecoration(
@@ -121,6 +98,44 @@ class HeroSection extends StatelessWidget {
             style: TextStyle(color: Colors.white, fontSize: 10),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class BottomNav extends StatefulWidget {
+  const BottomNav({super.key});
+
+  @override
+  State<BottomNav> createState() => _BottomNavState();
+}
+
+class _BottomNavState extends State<BottomNav> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: AppStyling.background,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 6),
+        child: GNav(
+          haptic: false, // haptic feedback
+          tabBorderRadius: 50,
+          iconSize: 24, // tab button icon size
+          duration: Duration(milliseconds: 200), // tab animation duration
+          gap: 8,
+          color: AppStyling.textHint,
+          backgroundColor: AppStyling.background,
+          activeColor: AppStyling.textHint,
+          tabBackgroundColor: Color(0xFF656565).withAlpha(100),
+          padding: EdgeInsets.all(16),
+          tabs: const [
+            GButton(icon: Icons.home_outlined),
+            GButton(icon: Icons.notifications_none_outlined),
+            GButton(icon: Icons.search),
+            GButton(icon: Icons.chat_bubble_outline_rounded),
+            GButton(icon: Icons.settings),
+          ],
+        ),
       ),
     );
   }
