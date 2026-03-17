@@ -23,13 +23,8 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.menu),
-          color: AppStyling.textHint,
-          onPressed: () {
-            Navigator.pushNamed(context, '/splash');
-          },
-          tooltip: 'Books',
+        iconTheme: const IconThemeData(
+          color: Colors.white, // Change the color of the hamburger icon here
         ),
         actions: [
           IconButton(
@@ -48,6 +43,31 @@ class MainScreen extends StatelessWidget {
         centerTitle: true,
       ),
       bottomNavigationBar: BottomNav(),
+      drawer: Drawer(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(0),
+            bottomRight: Radius.circular(0),
+          ),
+        ),
+        child: ListView(
+          children: [
+            DrawerHeader(
+              child: Center(
+                child: Text("L O G O", style: TextStyle(fontSize: 35)),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('H O M E', style: TextStyle(fontSize: 15)),
+            ),
+            ListTile(
+              leading: Icon(Icons.question_answer),
+              title: Text('A B O U T', style: TextStyle(fontSize: 15)),
+            ),
+          ],
+        ),
+      ),
       body: Container(
         padding: const EdgeInsets.all(10.0),
         decoration: BoxDecoration(
