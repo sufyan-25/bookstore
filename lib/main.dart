@@ -15,10 +15,12 @@ class MyApp extends StatelessWidget {
       title: 'Book Store',
       theme: ThemeData(primarySwatch: Colors.blue),
       debugShowCheckedModeBanner: false,
-      home: const AnimatedSplashScreenWidget(),
+      // home: const AnimatedSplashScreenWidget(),
+      home: const SplashScreen(),
       routes: {
         '/home': (context) => HomeScreen(),
         '/splash': (context) => AnimatedSplashScreenWidget(),
+        '/splash2': (context) => SplashScreen(),
       },
     );
   }

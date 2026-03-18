@@ -1,3 +1,4 @@
+import 'package:bookstore/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bookstore/config/config.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -116,6 +117,13 @@ class HeroSection extends StatelessWidget {
           Text(
             AppStrings.tagline,
             style: TextStyle(color: Colors.white, fontSize: 10),
+          ),
+          Image.asset('assets/splash_logo_transparent.png'),
+          ElevatedButton(
+            onPressed: () {
+              AnimatedSplashScreenWidget();
+            },
+            child: Text('Get Started'),
           ),
         ],
       ),

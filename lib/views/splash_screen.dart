@@ -9,10 +9,64 @@ class AnimatedSplashScreenWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
       duration: 3000,
-      splash: Icons.home,
+      splash: Image.asset('assets/splash_logo_transparent.png'),
       nextScreen: MainScreen(),
       splashTransition: SplashTransition.fadeTransition,
       backgroundColor: Colors.blue,
+    );
+  }
+}
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.of(
+        context,
+      ).pushReplacement(MaterialPageRoute(builder: (_) => const HomeScreen()));
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.blue,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/splash_logo_transparent.png',
+              width: 200,
+              height: 200,
+            ),
+            const SizedBox(height: 24),
+            const Text(
+              'B O O K S T O R E',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.5,
+              ),
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              'L E  L O  B O O K S',
+              style: TextStyle(color: Colors.white70, fontSize: 14),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
