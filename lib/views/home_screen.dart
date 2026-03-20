@@ -1,7 +1,5 @@
-import 'package:bookstore/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bookstore/config/config.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,14 +11,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return MainScreen();
-  }
-}
-
-class MainScreen extends StatelessWidget {
-  const MainScreen({super.key}); // Variables for colors
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
@@ -29,7 +19,7 @@ class MainScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.search),
+            icon: const Icon(Icons.account_circle_outlined),
             color: AppStyling.textHint,
             onPressed: () {
               // Implement search functionality here
@@ -44,126 +34,74 @@ class MainScreen extends StatelessWidget {
         centerTitle: true,
       ),
       bottomNavigationBar: BottomNav(),
-      drawer: Drawer(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(0),
-            bottomRight: Radius.circular(0),
-          ),
-        ),
-        child: ListView(
-          children: [
-            DrawerHeader(
-              child: Center(
-                child: Text("L O G O", style: TextStyle(fontSize: 35)),
+      drawer: DrawerWidget(),
+
+      // body: SafeArea(
+      //   //Body Styling
+      //   // child: Container(
+      //   //   padding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 0),
+      //   //   decoration: BoxDecoration(
+      //   //     gradient: LinearGradient(
+      //   //       begin: Alignment.topLeft,
+      //   //       end: Alignment.bottomRight,
+      //   //       colors: [Color(0xFFFF8B5A), Color(0xFFFF5a5a)], //
+      //   //     ),
+      //   //   ),
+      //   child: Column(
+      //     children: [
+      //       // No AppBar, so we create a custom header with a hamburger menu
+      //       Container(
+      //         height: 60,
+      //         decoration: BoxDecoration(
+      //           color: Color(0xFF292929),
+      //         ),
+      //         child: Row(
+      //           children: [
+      //             Builder(
+      //               builder: (context) => IconButton(
+      //                 icon: Icon(Icons.verified_user_rounded, color: Colors.white),
+      //                 onPressed: () => Scaffold.of(context).openDrawer(),
+      //               ),
+      //             ),
+      //             Text(
+      //               "My Custom Header",
+      //               style: TextStyle(color: Colors.white),
+      //             ),
+      //           ],
+      //         ),
+      //       ),
+      //       SizedBox(height: 8),
+      //       // Rest of your app content
+      //       Expanded(
+      //         child: ListView(
+      //           children: [
+      //             const HeroSection(),
+      //             const SizedBox(height: 16),
+      //             const HeroSection(),
+      //             const SizedBox(height: 16),
+      //           ],
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      // ),
+      // ),
+      body: Builder(
+        builder: (context) {
+          return Container(
+            padding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 0),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [Color(0xFFFF8B5A), Color(0xFFFF5a5a)], //
               ),
             ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('H O M E', style: TextStyle(fontSize: 15)),
+            child: ListView(
+              children: [const HeroSection(), const SizedBox(height: 16)],
             ),
-            ListTile(
-              leading: Icon(Icons.question_answer),
-              title: Text('A B O U T', style: TextStyle(fontSize: 15)),
-            ),
-          ],
-        ),
-      ),
-      body: Container(
-        padding: const EdgeInsets.all(10.0),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Color(0xFFFF8B5A), Color(0xFFFF5a5a)], //
-          ),
-        ),
-        child: ListView(
-          children: [
-            const SizedBox(height: 16),
-            const HeroSection(),
-            const SizedBox(height: 16),
-            const HeroSection(),
-            const SizedBox(height: 16),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class HeroSection extends StatelessWidget {
-  const HeroSection({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: AppStyling.background,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Hero Section',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            AppStrings.tagline,
-            style: TextStyle(color: Colors.white, fontSize: 10),
-          ),
-          Image.asset('assets/splash_logo_transparent.png'),
-          ElevatedButton(
-            onPressed: () {
-              AnimatedSplashScreenWidget();
-            },
-            child: Text('Get Started'),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class BottomNav extends StatefulWidget {
-  const BottomNav({super.key});
-
-  @override
-  State<BottomNav> createState() => _BottomNavState();
-}
-
-class _BottomNavState extends State<BottomNav> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: AppStyling.background,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 6),
-        child: GNav(
-          haptic: false, // haptic feedback
-          tabBorderRadius: 50,
-          iconSize: 24, // tab button icon size
-          duration: Duration(milliseconds: 200), // tab animation duration
-          gap: 8,
-          color: AppStyling.textHint,
-          backgroundColor: AppStyling.background,
-          activeColor: AppStyling.textHint,
-          tabBackgroundColor: Color(0xFF656565).withAlpha(100),
-          padding: EdgeInsets.all(16),
-          tabs: const [
-            GButton(icon: Icons.home_outlined),
-            GButton(icon: Icons.notifications_none_outlined),
-            GButton(icon: Icons.search),
-            GButton(icon: Icons.chat_bubble_outline_rounded),
-            GButton(icon: Icons.settings),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:bookstore/views/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:bookstore/config/config.dart';
 
 class AnimatedSplashScreenWidget extends StatelessWidget {
   const AnimatedSplashScreenWidget({super.key});
@@ -10,7 +10,7 @@ class AnimatedSplashScreenWidget extends StatelessWidget {
     return AnimatedSplashScreen(
       duration: 3000,
       splash: Image.asset('assets/splash_logo_transparent.png'),
-      nextScreen: MainScreen(),
+      nextScreen: HomeScreen(),
       splashTransition: SplashTransition.fadeTransition,
       backgroundColor: Colors.blue,
     );
@@ -44,26 +44,22 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/splash_logo_transparent.png',
-              width: 200,
-              height: 200,
-            ),
-            const SizedBox(height: 24),
-            const Text(
-              'B O O K S T O R E',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 1.5,
-              ),
-            ),
-            const SizedBox(height: 8),
-            const Text(
-              'L E  L O  B O O K S',
-              style: TextStyle(color: Colors.white70, fontSize: 14),
-            ),
+            Image.asset('assets/anime.gif', width: 150, height: 150),
+            // const SizedBox(height: 24),
+            // const Text(
+            //   'B O O K S T O R E',
+            //   style: TextStyle(
+            //     color: Colors.white,
+            //     fontSize: 28,
+            //     fontWeight: FontWeight.bold,
+            //     letterSpacing: 1.5,
+            //   ),
+            // ),
+            // const SizedBox(height: 8),
+            // const Text(
+            //   'L E  L O  B O O K S',
+            //   style: TextStyle(color: Colors.white70, fontSize: 14),
+            // ),
           ],
         ),
       ),
