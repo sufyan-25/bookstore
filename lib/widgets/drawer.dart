@@ -48,11 +48,31 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 children: [
                   ListTile(
                     leading: Icon(Icons.home),
-                    title: Text('H O M E', style: TextStyle(fontSize: 15)),
+                    title: Text('Home', style: TextStyle(fontSize: 15)),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/home');
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.home),
+                    title: Text('Login', style: TextStyle(fontSize: 15)),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/login');
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.home),
+                    title: Text('Signup', style: TextStyle(fontSize: 15)),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/signup');
+                    },
                   ),
                   ListTile(
                     leading: Icon(Icons.question_answer),
-                    title: Text('A B O U T', style: TextStyle(fontSize: 15)),
+                    title: Text('Book Detail', style: TextStyle(fontSize: 15)),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/book-detail');
+                    },
                   ),
                 ],
               ),

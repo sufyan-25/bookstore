@@ -1,8 +1,12 @@
-import 'package:bookstore/views/home_screen.dart';
-import 'package:bookstore/views/splash_screen.dart';
+import 'package:bookstore/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'config/config.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(const MyApp());
 }
 
@@ -15,12 +19,25 @@ class MyApp extends StatelessWidget {
       title: 'Book Store',
       theme: ThemeData(primarySwatch: Colors.blue),
       debugShowCheckedModeBanner: false,
-      // home: const AnimatedSplashScreenWidget(),
-      home: const SplashScreen(),
+      home: HomeScreen(),
+      // home: const SplashScreen(),
       routes: {
         '/home': (context) => HomeScreen(),
-        '/splash': (context) => AnimatedSplashScreenWidget(),
-        '/splash2': (context) => SplashScreen(),
+        '/login': (context) => LoginScreen(),
+        '/signup': (context) => SignUpScreen(),
+        '/book-detail': (context) => BookDetailScreen(
+          book: {
+            "title": "Castle The Sky",
+            "price": 16.0,
+            "images": [
+              "https://picsum.photos/400?1",
+              "https://picsum.photos/400?2",
+              "https://picsum.photos/400?3",
+            ],
+            "description":
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This is a professional demo description for your bookstore app.",
+          },
+        ),
       },
     );
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:bookstore/config/config.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class BottomNav extends StatefulWidget {
@@ -13,7 +12,7 @@ class _BottomNavState extends State<BottomNav> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppStyling.background,
+      color: Color(0xFF292929),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 6),
         child: GNav(
@@ -22,9 +21,9 @@ class _BottomNavState extends State<BottomNav> {
           iconSize: 24, // tab button icon size
           duration: Duration(milliseconds: 200), // tab animation duration
           gap: 8,
-          color: AppStyling.textHint,
-          backgroundColor: AppStyling.background,
-          activeColor: AppStyling.textHint,
+          color: Color(0xFF656565), // unselected icon color
+          backgroundColor: Color(0xFF292929),
+          activeColor: Color(0xFF656565),
           tabBackgroundColor: Color(0xFF656565).withAlpha(100),
           padding: EdgeInsets.all(16),
           tabs: const [
